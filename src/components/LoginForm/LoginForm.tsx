@@ -1,43 +1,34 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginFailure, loginSuccess } from "../../state/auth/authSlice";
 import { Header } from "./Header";
 import { useNavigate } from "react-router-dom";
 import { validateLoginForm } from "../../utils/helpers";
+import { loginUser } from "../../state/auth/authSlice";
+import { AppDispatch } from "../../state/store";
+import "../../css/LoginForm.css";
 
 export const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string>("");
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (validateLoginForm(email, password, setPasswordError, setEmailError)) {
       try {
-        const response = await fetch("/api/v1/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userName: email, password: password }),
-        });
-
-        const data = await response.json();
-
+        const response = await dispatch(loginUser({ email, password }));
+        const data = response.payload as { status: string; message: string };
         if (data.status === "success") {
-          dispatch(loginSuccess({ email, password }));
           navigate("/address");
         } else {
           setEmailError(data.message);
-          dispatch(loginFailure(data.message));
           setTimeout(() => setEmailError(""), 8000);
         }
       } catch (error) {
         setEmailError("An error occurred");
-        dispatch(loginFailure("An error occurred"));
         setTimeout(() => setEmailError(""), 8000);
       }
     }

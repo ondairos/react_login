@@ -12,8 +12,8 @@ export const validateForm = (
 ) => {
   let isValid = true;
   const formErrors: Partial<FormData> = {};
-  // only letters and spaces
-  const lettersRegex = /^[A-Za-z\s]+$/;
+  // only letters and spaces, all unicode chars
+  const lettersRegex = /^[\p{Letter}\s]+$/u;
 
   if (!formData.firstName.trim()) {
     [formErrors.firstName] = ["First Name is required"];

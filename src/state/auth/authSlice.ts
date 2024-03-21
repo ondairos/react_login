@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AuthState } from "./authTypes";
 
 const initialState: AuthState = {
@@ -7,6 +7,30 @@ const initialState: AuthState = {
   email: null,
   password: null,
 };
+
+export const loginUser = createAsyncThunk(
+  "auth/loginUser",
+  async (
+    { email, password }: { email: string; password: string },
+    { dispatch }
+  ) => {
+    try {
+      const response = await fetch("/api/v1/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userName: email, password: password }),
+      });
+
+      const data = await response.json();
+      dispatch(loginSuccess({ email, password }));
+      return data;
+    } catch (error) {
+      dispatch(loginFailure("An error occurred"));
+    }
+  }
+);
 
 export const authSlice = createSlice({
   name: "auth",
