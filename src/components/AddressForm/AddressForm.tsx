@@ -65,12 +65,17 @@ export const AddressForm: React.FC = () => {
         emailFrom: formData.email,
         emailTo: "i-alert-test@mailinator.com",
       };
-      window.location.href = `mailto:${body.emailTo}?subject=${body.subject}&body=${body.body}`;
+      window.location.href = `mailto:${
+        body.emailTo
+      }?subject=${encodeURIComponent(body.subject)}&body=${encodeURIComponent(
+        body.body
+      )}&from=${encodeURIComponent(body.emailFrom)}`;
     }
   };
 
   return (
     <>
+      <h1>Hello: {formData.email.split("@")[0]}</h1>
       <h1>Fill out your information:</h1>
 
       {Object.keys(errors).length > 0 && (
