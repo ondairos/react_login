@@ -44,22 +44,28 @@ export const LoginForm: React.FC = () => {
           onSubmit={handleSubmit}
           className="flex flex-col items-center justify-center"
         >
-          <label htmlFor="email">Email:</label>
-          <input
-            name="email"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-          <label htmlFor="password">Password:</label>
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
+          <div className="formGroup">
+            <label htmlFor="email">Email:</label>
+            <input
+              name="email"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </div>
+
+          <div className="formGroup">
+            <label htmlFor="password">Password:</label>
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </div>
+
           <button type="submit">Login</button>
         </form>
       </section>

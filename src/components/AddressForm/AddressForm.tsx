@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState, Country, State, FormData } from "./AddressFormTypes.ts";
-import { validateForm, getCountries } from "../../utils/helpers.ts";
+import { getCountries, sendToMail } from "../../utils/helpers.ts";
+import "../../css/LoginForm.css";
 
 export const AddressForm: React.FC = () => {
   const isAuthenticated = useSelector(
@@ -48,35 +49,22 @@ export const AddressForm: React.FC = () => {
   };
 
   const handleCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedCountry = event.target.value;
     const dataForSelectedCountry = countries.find(
-      (country) => country.name === selectedCountry
+      (country) => country.name === event.target.value
     );
-    setFormData({ ...formData, country: selectedCountry });
+    setFormData({ ...formData, country: event.target.value });
     setStates(dataForSelectedCountry?.states || []);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (validateForm(formData, setErrors)) {
-      const body = {
-        subject: `${formData.firstName} ${formData.lastName}  ${formData.address}`,
-        body: JSON.stringify(formData),
-        emailFrom: formData.email,
-        emailTo: "i-alert-test@mailinator.com",
-      };
-      window.location.href = `mailto:${
-        body.emailTo
-      }?subject=${encodeURIComponent(body.subject)}&body=${encodeURIComponent(
-        body.body
-      )}&from=${encodeURIComponent(body.emailFrom)}`;
-    }
+    sendToMail(formData, setErrors);
   };
 
   return (
     <>
-      <h1>Hello: {formData.email.split("@")[0]}</h1>
-      <h1>Fill out your information:</h1>
+      <h1 className="userHeading">Hello: {formData.email.split("@")[0]}</h1>
+      <h1 className="description">Fill out your information:</h1>
 
       {Object.keys(errors).length > 0 && (
         <ul>
@@ -87,7 +75,7 @@ export const AddressForm: React.FC = () => {
       )}
 
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="formGroup">
           <label htmlFor="firstName">First Name:</label>
           <input
             type="text"
@@ -97,7 +85,7 @@ export const AddressForm: React.FC = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="formGroup">
           <label htmlFor="lastName">Last Name:</label>
           <input
             type="text"
@@ -107,7 +95,7 @@ export const AddressForm: React.FC = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="formGroup">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -117,7 +105,7 @@ export const AddressForm: React.FC = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="formGroup">
           <label htmlFor="address">Address:</label>
           <input
             type="text"
@@ -127,7 +115,7 @@ export const AddressForm: React.FC = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="formGroup">
           <label htmlFor="country">Country:</label>
           <select
             id="country"
@@ -143,7 +131,7 @@ export const AddressForm: React.FC = () => {
             ))}
           </select>
         </div>
-        <div>
+        <div className="formGroup">
           <label htmlFor="state">State:</label>
           <select
             id="state"

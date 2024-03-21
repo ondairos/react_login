@@ -49,7 +49,6 @@ The project consists of two main components:
    - Upon submission, open the user's default email client with the following pre-filled fields:
      - **Subject**: `{First name} {Last name} Address Data`
      - **Body**: All form data
-     - **Email From**: The email filled in the form
      - **Email To**: i-alert-test@mailinator.com
 
 ## Installation
@@ -114,10 +113,7 @@ This will serve the production build locally for previewing.
 - [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) and [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser):
   ESLint plugin and parser for TypeScript.
 - [@vitejs/plugin-react](https://github.com/vitejs/vite/tree/main/packages/plugin-react): Vite plugin for React support.
-- [autoprefixer](https://www.npmjs.com/package/autoprefixer): PostCSS plugin to parse CSS and add vendor prefixes.
 - [eslint](https://eslint.org/): A tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
 - [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks): This ESLint plugin enforces the Rules of Hooks.
-- [postcss](https://postcss.org/): A tool for transforming CSS with JavaScript plugins.
-- [tailwindcss](https://tailwindcss.com/): A utility-first CSS framework for rapidly building custom designs.
 - [typescript](https://www.typescriptlang.org/): TypeScript is a superset of JavaScript that adds optional static types to the language.
 - [vite](https://vitejs.dev/): A next-generation frontend tooling.

@@ -79,6 +79,25 @@ export const validateLoginForm = (
   return isValid;
 };
 
+export const sendToMail = (
+  formData: FormData,
+  setErrors: SetErrorsFunctionType
+) => {
+  if (validateForm(formData, setErrors)) {
+    const body = {
+      subject: `${formData.firstName} ${formData.lastName}  ${formData.address}`,
+      body: JSON.stringify(formData),
+      emailFrom: formData.email,
+      emailTo: "i-alert-test@mailinator.com",
+    };
+    window.location.href = `mailto:${body.emailTo}?subject=${encodeURIComponent(
+      body.subject
+    )}&body=${encodeURIComponent(body.body)}&from=${encodeURIComponent(
+      body.emailFrom
+    )}`;
+  }
+};
+
 export const getCountries = async (setCountries: SetCountriesFunctionType) => {
   try {
     const response = await fetch(
