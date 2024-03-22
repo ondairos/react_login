@@ -1,12 +1,12 @@
 {
+  "rewrites": [
+    { "source": "/address", "destination": "/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
   "routes": [
     {
       "src": "/api/v1/login",
       "dest": "https://dev.ialert.ai/api/v1/login"
     }
-  ],
-  "rewrites": [
-    { "source": "/address", "destination": "/" },
-    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
