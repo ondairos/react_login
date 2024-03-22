@@ -1,8 +1,5 @@
 {
-  "rewrites": [
-    { "source": "/address", "destination": "/index.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
   "routes": [
     {
       "src": "/api/v1/login",
