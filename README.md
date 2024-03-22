@@ -1,6 +1,6 @@
 # React Login
 
-This project is a simple login application and register application built with React, Redux Toolkit, and React Router Dom.
+This project is a simple login and register application built with React, Redux Toolkit, and React Router Dom.
 
 ## Description
 
