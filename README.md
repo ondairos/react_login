@@ -1,6 +1,7 @@
 # React Login
 
-This project is a simple login and register application built with React, Redux Toolkit, and React Router Dom.
+This project is a simple login and register application that sends information to the user's default email app.
+Built with Vite, SASS, React, Redux Toolkit, and React Router Dom.
 
 ## Description
 
@@ -81,7 +82,7 @@ To start the development server:
 npm run dev
 ```
 
-This will run the application in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This will run the application in development mode. Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 
 To build the production-ready bundle:
 
