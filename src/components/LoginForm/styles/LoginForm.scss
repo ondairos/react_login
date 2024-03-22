@@ -87,6 +87,10 @@ form {
 
 // small screens
 @media (max-width: 576px) {
+  .userHeading {
+    font-size: x-large;
+  }
+
   form {
     max-width: 100%;
     .formGroup {
