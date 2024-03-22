@@ -5,6 +5,11 @@ import {
   SetEmailErrorFunctionType,
   SetPasswordErrorFunctionType,
 } from "../components/AddressForm/AddressFormTypes";
+import { loginUser } from "../state/auth/authSlice";
+import { ThunkDispatch } from "redux-thunk";
+import { Action } from "redux";
+import { RootState } from "../state/store";
+import { NavigateFunction } from "react-router-dom";
 
 export const validateForm = (
   formData: FormData,
@@ -77,6 +82,31 @@ export const validateLoginForm = (
     setPasswordError("");
   }
   return isValid;
+};
+
+export const handleLoginSubmit = async (
+  email: string,
+  password: string,
+  setPasswordError: (error: string) => void,
+  setEmailError: (error: string) => void,
+  dispatch: ThunkDispatch<RootState, undefined, Action>,
+  navigate: NavigateFunction
+) => {
+  if (validateLoginForm(email, password, setPasswordError, setEmailError)) {
+    try {
+      const response = await dispatch(loginUser({ email, password }));
+      const data = response.payload as { status: string; message: string };
+      if (data.status === "success") {
+        navigate("/address");
+      } else {
+        setEmailError(data.message);
+        setTimeout(() => setEmailError(""), 8000);
+      }
+    } catch (error) {
+      setEmailError("An error occurred");
+      setTimeout(() => setEmailError(""), 8000);
+    }
+  }
 };
 
 export const sendToMail = (

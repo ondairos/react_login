@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Header } from "./Header";
 import { useNavigate } from "react-router-dom";
-import { validateLoginForm } from "../../utils/helpers";
-import { loginUser } from "../../state/auth/authSlice";
+import { handleLoginSubmit } from "../../utils/helpers";
 import { AppDispatch } from "../../state/store";
 import "../../css/LoginForm.css";
 
@@ -17,21 +16,14 @@ export const LoginForm: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (validateLoginForm(email, password, setPasswordError, setEmailError)) {
-      try {
-        const response = await dispatch(loginUser({ email, password }));
-        const data = response.payload as { status: string; message: string };
-        if (data.status === "success") {
-          navigate("/address");
-        } else {
-          setEmailError(data.message);
-          setTimeout(() => setEmailError(""), 8000);
-        }
-      } catch (error) {
-        setEmailError("An error occurred");
-        setTimeout(() => setEmailError(""), 8000);
-      }
-    }
+    handleLoginSubmit(
+      email,
+      password,
+      setPasswordError,
+      setEmailError,
+      dispatch,
+      navigate
+    );
   };
 
   return (
