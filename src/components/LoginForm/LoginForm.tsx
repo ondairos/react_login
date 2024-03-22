@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Header } from "./Header";
 import { useNavigate } from "react-router-dom";
 import { handleLoginSubmit } from "../../utils/helpers";
 import { AppDispatch } from "../../state/store";
@@ -28,7 +27,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <h1 className="userHeading">Sign In</h1>
       <section>
         {(emailError || passwordError) && (
           <ul className="alert">
