@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { RootState, Country, State, FormData } from "./AddressFormTypes.ts";
 import { getCountries, sendToMail } from "../../utils/helpers.ts";
 import "../../css/LoginForm.css";
+import { FormGroupInput } from "../shared/FormGroupInput/FormGroupInput.tsx";
+import formGroupInputs from "../shared/FormGroupInput/FormGroupInputData.ts";
 
 export const AddressForm: React.FC = () => {
   const isAuthenticated = useSelector(
@@ -19,11 +21,10 @@ export const AddressForm: React.FC = () => {
     country: "",
     state: "",
   });
-
-  const navigate = useNavigate();
   const [countries, setCountries] = useState<Country[]>([]);
   const [states, setStates] = useState<State[]>([]);
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -75,50 +76,18 @@ export const AddressForm: React.FC = () => {
 
       <form onSubmit={handleSubmit}>
         <h5 className="description">Fill out your information:</h5>
-        <div className="formGroup">
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            placeholder="type your first name"
-            value={formData.firstName}
-            onChange={handleChange}
+        {formGroupInputs.map((group, index) => (
+          <FormGroupInput
+            key={index}
+            label={group.label}
+            name={group.name}
+            type={group.type}
+            placeholder={group.placeholder}
+            value={formData[group.name]}
+            handleChange={handleChange}
           />
-        </div>
-        <div className="formGroup">
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            placeholder="type your last name"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="formGroup">
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="type your email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="formGroup">
-          <label htmlFor="address">Address:</label>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            placeholder="type your address"
-            value={formData.address}
-            onChange={handleChange}
-          />
-        </div>
+        ))}
+
         <div className="formGroup">
           <label htmlFor="country">Country:</label>
           <select

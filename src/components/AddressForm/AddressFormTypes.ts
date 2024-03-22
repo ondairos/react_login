@@ -23,6 +23,16 @@ export interface FormData {
   address: string;
   country: string;
   state: string;
+  [key: string]: string;
+}
+
+export interface FormGroupProps {
+  label: string;
+  name: string;
+  type: string;
+  placeholder: string;
+  value: string;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface SetErrorsFunctionType {
