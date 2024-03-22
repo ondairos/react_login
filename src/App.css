@@ -14,4 +14,7 @@
 
 .errorPage {
   color: white;
+  a {
+    color: white;
+  }
 }
