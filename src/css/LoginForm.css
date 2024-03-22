@@ -55,6 +55,7 @@ form .formGroup select {
   border-radius: 0.3rem;
   width: 60%;
   height: 2rem;
+  font-family: "Open Sans", sans-serif;
   background-color: rgb(246, 246, 246);
 }
 form .formGroup input option,
