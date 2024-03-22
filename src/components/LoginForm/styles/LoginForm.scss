@@ -58,7 +58,7 @@ form {
     select {
       border: 1px solid #838383;
       border-radius: 0.3rem;
-      width: 70%;
+      width: 60%;
       height: 2rem;
       background-color: $inputBackground;
 
@@ -95,6 +95,10 @@ form {
     max-width: 100%;
     .formGroup {
       flex-direction: column;
+      input,
+      select {
+        width: 80%;
+      }
     }
   }
 }
