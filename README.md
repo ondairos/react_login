@@ -117,3 +117,5 @@ This will serve the production build locally for previewing.
 - [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks): This ESLint plugin enforces the Rules of Hooks.
 - [typescript](https://www.typescriptlang.org/): TypeScript is a superset of JavaScript that adds optional static types to the language.
 - [vite](https://vitejs.dev/): A next-generation frontend tooling.
+
+## Author Ioannis Kantiloros
