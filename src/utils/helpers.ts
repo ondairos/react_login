@@ -84,9 +84,18 @@ export const sendToMail = (
   setErrors: SetErrorsFunctionType
 ) => {
   if (validateForm(formData, setErrors)) {
+    const bodyMessage = `
+      First Name: ${formData.firstName}
+      Last Name: ${formData.lastName}
+      Address: ${formData.address}
+      Email: ${formData.email}
+      Country: ${formData.country}
+      State: ${formData.state}
+    `;
+
     const body = {
       subject: `${formData.firstName} ${formData.lastName}  ${formData.address}`,
-      body: JSON.stringify(formData),
+      body: bodyMessage,
       emailFrom: formData.email,
       emailTo: "i-alert-test@mailinator.com",
     };

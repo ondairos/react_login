@@ -37,19 +37,23 @@ export const LoginForm: React.FC = () => {
   return (
     <>
       <Header />
-      <section className="mt-10">
-        {emailError && <div>{emailError}</div>}
-        {passwordError && <div>{passwordError}</div>}
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col items-center justify-center"
-        >
+      <section>
+        {(emailError || passwordError) && (
+          <ul className="alert">
+            {emailError && <li>{emailError}</li>}
+            {passwordError && <li>{passwordError}</li>}
+          </ul>
+        )}
+        <form onSubmit={handleSubmit}>
+          <h5 className="description">
+            Please use your credentials to login:{" "}
+          </h5>
           <div className="formGroup">
             <label htmlFor="email">Email:</label>
             <input
               name="email"
               type="email"
-              placeholder="Email"
+              placeholder="type your email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -60,7 +64,7 @@ export const LoginForm: React.FC = () => {
             <input
               name="password"
               type="password"
-              placeholder="Password"
+              placeholder="type your password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />

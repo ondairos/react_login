@@ -64,10 +64,9 @@ export const AddressForm: React.FC = () => {
   return (
     <>
       <h1 className="userHeading">Hello: {formData.email.split("@")[0]}</h1>
-      <h1 className="description">Fill out your information:</h1>
 
       {Object.keys(errors).length > 0 && (
-        <ul>
+        <ul className="alert">
           {Object.values(errors).map((errorMessage, index) => (
             <li key={index}>{errorMessage}</li>
           ))}
@@ -75,12 +74,14 @@ export const AddressForm: React.FC = () => {
       )}
 
       <form onSubmit={handleSubmit}>
+        <h5 className="description">Fill out your information:</h5>
         <div className="formGroup">
           <label htmlFor="firstName">First Name:</label>
           <input
             type="text"
             id="firstName"
             name="firstName"
+            placeholder="type your first name"
             value={formData.firstName}
             onChange={handleChange}
           />
@@ -91,6 +92,7 @@ export const AddressForm: React.FC = () => {
             type="text"
             id="lastName"
             name="lastName"
+            placeholder="type your last name"
             value={formData.lastName}
             onChange={handleChange}
           />
@@ -101,6 +103,7 @@ export const AddressForm: React.FC = () => {
             type="email"
             id="email"
             name="email"
+            placeholder="type your email"
             value={formData.email}
             onChange={handleChange}
           />
@@ -111,6 +114,7 @@ export const AddressForm: React.FC = () => {
             type="text"
             id="address"
             name="address"
+            placeholder="type your address"
             value={formData.address}
             onChange={handleChange}
           />
@@ -149,7 +153,7 @@ export const AddressForm: React.FC = () => {
           </select>
         </div>
 
-        <button type="submit">Submit</button>
+        <button type="submit">Submit to Email</button>
       </form>
     </>
   );

@@ -1,10 +1,27 @@
 .userHeading {
-  font-size: larger;
+  font-size: xx-large;
+  color: white;
 }
 
 .description {
-  font-size: large;
+  font-weight: 200;
+  font-size: medium;
   font-style: italic;
+  color: white;
+}
+
+.alert {
+  padding: 1rem;
+  margin: 2rem auto;
+  max-width: 50%;
+  border-radius: 0.6rem;
+  background-color: #ffabab;
+  font-size: small;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+.alert li {
+  list-style: none;
+  background-color: #ffabab;
 }
 
 form {
@@ -12,12 +29,20 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 80%;
+  max-width: 100%;
   margin: 2rem auto;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  background-color: rgb(235, 235, 235);
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  background-color: rgb(255, 255, 255);
   border-radius: 0.5rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+form .description {
+  font-weight: 200;
+  font-size: medium;
+  font-style: italic;
+  color: black;
+  background-color: rgb(255, 255, 255);
 }
 form .formGroup {
   margin-bottom: 1.5rem;
@@ -25,28 +50,63 @@ form .formGroup {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: rgb(255, 255, 255);
 }
-form input,
-form select {
+form .formGroup label {
+  background-color: rgb(255, 255, 255);
+  width: 7rem;
+}
+form .formGroup input,
+form .formGroup select {
   border: 1px solid #838383;
-  border-radius: 5px;
-  width: 80%;
+  border-radius: 0.3rem;
+  width: 70%;
+  height: 2rem;
+  background-color: rgb(246, 246, 246);
+}
+form .formGroup input option,
+form .formGroup select option {
+  background-color: rgb(246, 246, 246);
 }
 form button {
-  padding: 10px 20px;
+  padding: 0.8rem 2rem;
+  margin-top: 1rem;
   background-color: #006ef4;
   color: #fff;
   border: none;
   border-radius: 5px;
+  font-size: large;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 form button:hover {
-  background-color: #218838;
+  background-color: #0056bf;
 }
 
 @media (max-width: 576px) {
-  .formGroup {
+  form {
+    max-width: 100%;
+  }
+  form .formGroup {
     flex-direction: column;
+  }
+}
+@media (min-width: 577px) and (max-width: 992px) {
+  form {
+    max-width: 80%;
+  }
+  form .formGroup input,
+  form .formGroup select {
+    margin-right: 1rem;
+  }
+}
+@media (min-width: 993px) {
+  form {
+    max-width: 60%;
+  }
+  form .formGroup input,
+  form .formGroup select {
+    margin-right: 1rem;
   }
 }

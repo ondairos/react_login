@@ -5,7 +5,6 @@ const initialState: AuthState = {
   isAuthenticated: false,
   error: null,
   email: null,
-  password: null,
 };
 
 export const loginUser = createAsyncThunk(
@@ -24,7 +23,7 @@ export const loginUser = createAsyncThunk(
       });
 
       const data = await response.json();
-      dispatch(loginSuccess({ email, password }));
+      dispatch(loginSuccess({ email }));
       return data;
     } catch (error) {
       dispatch(loginFailure("An error occurred"));
@@ -40,7 +39,6 @@ export const authSlice = createSlice({
       state.isAuthenticated = true;
       state.error = null;
       state.email = action.payload.email;
-      state.password = action.payload.password;
     },
     loginFailure: (state, action) => {
       state.isAuthenticated = false;
