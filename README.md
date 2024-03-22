@@ -26,7 +26,7 @@ The project consists of two main components:
    - Headers: `Content-Type: application/json`
 
 3. **Redirect**:
-   - Upon successful login, redirect to the Address Screen.
+   - Upon successful login, redirects the user to the Address Screen.
 
 #### Address Screen:
 
